@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inner Voice – Privacy Policy</title>
+<style>
+  :root{
+    --bg:#0b0c0f;--card:#11131a;--ink:#e9edf1;--muted:#9aa3ad;--accent:#6aa4ff;
+    --chip:#1a1f2b;--ok:#3ccf91;--warn:#ffc857;--bad:#ff6b6b
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .container{max-width:980px;margin:32px auto;padding:0 16px}
+  header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+  header h1{font-size:24px;margin:0}
+  nav.lang{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{padding:8px 10px;border-radius:999px;background:var(--chip);color:var(--ink);text-decoration:none}
+  .chip.active{outline:2px solid var(--accent)}
+  .card{background:var(--card);border:1px solid #202537;border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  h2{margin:6px 0 10px 0;font-size:20px}
+  h3{margin:18px 0 6px 0;font-size:16px;color:var(--muted)}
+  p,li{color:#dfe5eb}
+  code,kbd{background:#1b2233;border:1px solid #2b354a;border-radius:6px;padding:2px 6px}
+  ul{margin-top:6px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+  .note{color:var(--muted)}
+  footer{color:var(--muted);margin:24px 0 40px}
+  .grid{display:grid;gap:14px}
+  @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  .small{font-size:.95rem}
+</style>
+<script>
+  // Simple hash-based language switcher
+  function showLang(lang){
+    for(const el of document.querySelectorAll("[data-lang]")){
+      el.style.display = (el.dataset.lang===lang) ? "block" : "none";
+    }
+    for(const a of document.querySelectorAll("nav.lang a")){
+      a.classList.toggle("active", a.dataset.target===lang);
+    }
+  }
+  function init(){
+    const supported = ["en","zh-Hant","zh-Hans","ja","ko"];
+    let lang = location.hash.replace("#","") || (navigator.language || "en");
+    // normalize
+    if(lang.toLowerCase().startsWith("zh")){
+      if(lang.toLowerCase().includes("hant")||["tw","hk","mo"].some(r=>lang.toLowerCase().includes(r))) lang="zh-Hant";
+      else lang="zh-Hans";
+    }else if(lang.toLowerCase().startsWith("ja")) lang="ja";
+    else if(lang.toLowerCase().startsWith("ko")) lang="ko";
+    else lang="en";
+    if(!supported.includes(lang)) lang="en";
+    showLang(lang);
+    window.addEventListener("hashchange",()=>showLang(location.hash.replace("#","")||"en"));
+  }
+  document.addEventListener("DOMContentLoaded",init);
+</script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Inner Voice · Privacy Policy</h1>
+    <nav class="lang" aria-label="Language">
+      <a class="chip" href="#en" data-target="en">English</a>
+      <a class="chip" href="#zh-Hant" data-target="zh-Hant">繁體中文</a>
+      <a class="chip" href="#zh-Hans" data-target="zh-Hans">简体中文</a>
+      <a class="chip" href="#ja" data-target="ja">日本語</a>
+      <a class="chip" href="#ko" data-target="ko">한국어</a>
+    </nav>
+  </header>
+
+  <!-- ================= ENGLISH ================= -->
+  <section data-lang="en">
+    <div class="card">
+      <h2>Overview</h2>
+      <p><strong>Inner Voice</strong> helps you share short posts or voice notes visible within ~1 km for 24 hours. We take your privacy seriously. This document explains what we collect, why, and how you can control it.</p>
+      <p class="small note">Repository: <a class="chip" href="https://github.com/jasper26/innervoice">github.com/jasper26/innervoice</a> · Effective date: <span class="mono" id="en-date"></span></p>
+      <script>document.getElementById("en-date").textContent=new Date().toISOString().slice(0,10);</script>
+    </div>
+
+    <div class="card">
+      <h2>Permissions & Why We Ask</h2>
+      <div class="grid">
+        <div>
+          <h3>Location (While Using the App)</h3>
+          <ul>
+            <li>Show posts near you (≈ 1 km) and display your city name.</li>
+            <li>Fetch local weather via Apple WeatherKit (iOS 16+) or Open-Meteo.</li>
+            <li><span class="ok">We do not collect location in the background</span>. Location is requested only when you use features that need it.</li>
+            <li>When you publish a post, its coordinates are stored with the post so others nearby can see it.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Microphone</h3>
+          <ul>
+            <li>Record optional voice messages for posts (and, where available, chat).</li>
+            <li>Audio is uploaded to our backend (Firebase Storage). We store duration and waveform samples.</li>
+            <li>Post audio follows the same <strong>24-hour TTL</strong> as posts.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Photo Library</h3>
+          <ul>
+            <li>Let you pick a photo to attach to a post or your profile.</li>
+            <li><span class="ok">We only access items you choose</span>—no bulk scanning of your library.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Camera</h3>
+          <ul>
+            <li>Capture a photo directly for posts or your profile.</li>
+            <li>Used on demand; not used in the background.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Data We Process</h2>
+      <ul>
+        <li><strong>Account data</strong>: If you sign in (e.g., with Google), we receive your UID and basic profile info provided by the identity provider.</li>
+        <li><strong>Profile</strong>: Display name and photos you upload.</li>
+        <li><strong>Posts</strong>: Text, mood/emoji & color, optional photo/voice, approximate location, like count, and creation/expiry times. Posts automatically expire after <strong>24 hours</strong>.</li>
+        <li><strong>Usage data</strong>: Basic telemetry required by Firebase to keep the service running (e.g., request logs). We do not sell your data.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>How We Use Services</h2>
+      <ul>
+        <li><strong>Firebase</strong> (Auth/Firestore/Storage): account, posts, media hosting, and real-time updates.</li>
+        <li><strong>Apple WeatherKit</strong> / <strong>Open-Meteo</strong>: current weather for your location (coordinates are sent to obtain weather; no account linkage).</li>
+        <li><strong>Apple MapKit</strong>: map display and clustering of nearby posts.</li>
+        <li><strong>Google Sign-In</strong>: optional sign-in. Your Google UID and basic profile are used to create/associate your account.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Your Choices & Controls</h2>
+      <ul>
+        <li>You can decline permissions; related features will be unavailable.</li>
+        <li>You may delete your posts at any time; otherwise they expire after 24 hours.</li>
+        <li>To request data export or deletion of your account, please contact us (see below).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Security & Retention</h2>
+      <ul>
+        <li>Transport is protected with HTTPS/TLS. Media at rest is stored in Firebase with access rules.</li>
+        <li>Posts and their media are retained for up to 24 hours (TTL). Profile assets remain until you remove them.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Children</h2>
+      <p>Inner Voice is not intended for children under 13, or the minimum age required in your region.</p>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Questions about privacy? Please open an issue at the project repository: <a href="https://github.com/jasper26/innervoice" class="chip">github.com/jasper26/innervoice</a></p>
+    </div>
+
+    <footer class="note small">We may update this policy as the app evolves. Material changes will be reflected on this page.</footer>
+  </section>
+
+  <!-- ================= TRADITIONAL CHINESE ================= -->
+  <section data-lang="zh-Hant" style="display:none">
+    <div class="card">
+      <h2>總覽</h2>
+      <p><strong>Inner Voice</strong> 讓你發佈在半徑約 1 公里內可見、保存 24 小時的短文字或語音。以下說明我們如何處理你的資料與權限。</p>
+      <p class="small note">原始碼：<a class="chip" href="https://github.com/jasper26/innervoice">github.com/jasper26/innervoice</a> · 生效日期：<span class="mono" id="tw-date"></span></p>
+      <script>document.getElementById("tw-date").textContent=new Date().toISOString().slice(0,10);</script>
+    </div>
+
+    <div class="card">
+      <h2>權限與用途</h2>
+      <div class="grid">
+        <div>
+          <h3>定位（僅在使用期間）</h3>
+          <ul>
+            <li>顯示你附近（約 1 公里）的貼文與城市名稱。</li>
+            <li>取得當地天氣（iOS 16+ 透過 Apple WeatherKit；否則 Open-Meteo）。</li>
+            <li><span class="ok">不在背景持續蒐集定位</span>，僅在使用相關功能時向你請求。</li>
+            <li>當你發佈貼文時，會儲存該貼文的座標，讓附近使用者可見。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>麥克風</h3>
+          <ul>
+            <li>錄製貼文（以及可用時的聊天）之語音訊息。</li>
+            <li>音檔上傳至 Firebase 儲存空間，並記錄長度與波形樣本。</li>
+            <li>貼文語音與貼文相同，<strong>24 小時</strong>後到期移除。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>相簿存取</h3>
+          <ul>
+            <li>選擇要附加於貼文或個人檔案的照片。</li>
+            <li><span class="ok">只會讀取你選取的項目</span>，不會掃描整個相簿。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>相機</h3>
+          <ul>
+            <li>直接拍攝照片作為貼文或頭像。</li>
+            <li>僅在操作時使用，不會在背景啟用。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>處理的資料</h2>
+      <ul>
+        <li><strong>帳號資料</strong>：例如使用 Google 登入時取得的 UID 與基本公開資訊。</li>
+        <li><strong>個人檔案</strong>：暱稱、你上傳的照片等。</li>
+        <li><strong>貼文</strong>：文字、心情／表情與顏色、可選的圖片或語音、近似位置、按讚數、建立與到期時間。貼文 <strong>24 小時後自動到期</strong>。</li>
+        <li><strong>使用資訊</strong>：Firebase 為維持服務所需的基本紀錄。我們不販售個人資料。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>使用的第三方服務</h2>
+      <ul>
+        <li><strong>Firebase</strong>（Auth/Firestore/Storage）：帳號、貼文、媒體託管與即時更新。</li>
+        <li><strong>Apple WeatherKit</strong> / <strong>Open-Meteo</strong>：依座標取得天氣，不與帳號關聯。</li>
+        <li><strong>Apple MapKit</strong>：地圖顯示與聚合。</li>
+        <li><strong>Google 登入</strong>：可選擇的登入方式，用以建立／關聯你的帳號。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>你的選擇</h2>
+      <ul>
+        <li>你可拒絕權限，相關功能將無法使用。</li>
+        <li>你可隨時刪除自己的貼文；否則將於 24 小時後自動刪除。</li>
+        <li>若需帳號資料匯出或刪除，請與我們聯繫（如下）。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>安全與保存</h2>
+      <ul>
+        <li>傳輸以 HTTPS/TLS 保護；媒體儲存在 Firebase，並有存取規則。</li>
+        <li>貼文與其媒體保留不超過 24 小時；個人檔案相簿會保留至你刪除為止。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>兒少隱私</h2>
+      <p>本服務並非為 13 歲以下或你所在區域規定年齡以下之兒童設計。</p>
+    </div>
+
+    <div class="card">
+      <h2>聯絡方式</h2>
+      <p>隱私問題請於專案頁面提出 Issue：<a href="https://github.com/jasper26/innervoice" class="chip">github.com/jasper26/innervoice</a></p>
+    </div>
+
+    <footer class="note small">政策可能隨功能調整而更新；重大變更將反映於此頁。</footer>
+  </section>
+
+  <!-- ================= SIMPLIFIED CHINESE ================= -->
+  <section data-lang="zh-Hans" style="display:none">
+    <div class="card">
+      <h2>概览</h2>
+      <p><strong>Inner Voice</strong> 用于发布在约 1 公里范围内可见、保留 24 小时的短文字或语音。以下说明我们如何使用你的数据与权限。</p>
+      <p class="small note">源码：<a class="chip" href="https://github.com/jasper26/innervoice">github.com/jasper26/innervoice</a> · 生效日期：<span class="mono" id="cn-date"></span></p>
+      <script>document.getElementById("cn-date").textContent=new Date().toISOString().slice(0,10);</script>
+    </div>
+
+    <div class="card">
+      <h2>权限与用途</h2>
+      <div class="grid">
+        <div>
+          <h3>定位（仅使用期间）</h3>
+          <ul>
+            <li>展示你附近（约 1 公里）的帖子与城市名称。</li>
+            <li>获取本地天气（iOS 16+ 通过 Apple WeatherKit；否则 Open-Meteo）。</li>
+            <li><span class="ok">不在后台持续收集定位</span>，仅在使用相关功能时请求。</li>
+            <li>当你发布帖子时，会保存该帖子的坐标，以便附近用户可见。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>麦克风</h3>
+          <ul>
+            <li>录制帖子（以及可用时的聊天）语音消息。</li>
+            <li>音频上传至 Firebase，并记录时长与波形样本。</li>
+            <li>帖子语音与帖子一致，<strong>24 小时</strong>后到期删除。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>照片库</h3>
+          <ul>
+            <li>选择要附加到帖子或个人资料的照片。</li>
+            <li><span class="ok">只访问你选择的项目</span>，不会扫描整个相册。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>相机</h3>
+          <ul>
+            <li>直接拍摄照片用于帖子或头像。</li>
+            <li>仅按需使用，不在后台启用。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>我们处理的数据</h2>
+      <ul>
+        <li><strong>账户</strong>：例如使用 Google 登录时提供的 UID 与基本公开信息。</li>
+        <li><strong>个人资料</strong>：昵称、你上传的照片等。</li>
+        <li><strong>帖子</strong>：文字、心情/表情与颜色、可选图片或语音、近似位置、点赞数、创建与到期时间。帖子 <strong>24 小时后自动到期</strong>。</li>
+        <li><strong>使用数据</strong>：Firebase 为运行服务所需的基础日志。我们不会出售你的数据。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>第三方服务</h2>
+      <ul>
+        <li><strong>Firebase</strong>（Auth/Firestore/Storage）：账户、帖子、媒体托管与实时更新。</li>
+        <li><strong>Apple WeatherKit</strong> / <strong>Open-Meteo</strong>：依据坐标获取天气，不与账户关联。</li>
+        <li><strong>Apple MapKit</strong>：地图显示与聚合。</li>
+        <li><strong>Google 登录</strong>：可选的登录方式，用于创建/关联账户。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>你的选择</h2>
+      <ul>
+        <li>可拒绝权限；相关功能将不可用。</li>
+        <li>可随时删除自己的帖子；否则 24 小时后自动删除。</li>
+        <li>需要导出或删除账户数据，请与我们联系（见下）。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>安全与保留</h2>
+      <ul>
+        <li>传输使用 HTTPS/TLS；媒体存储在 Firebase，并受访问规则保护。</li>
+        <li>帖子与其媒体保存不超过 24 小时；个人资料相册保留至你删除为止。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>未成年人</h2>
+      <p>本服务不针对 13 岁以下或你所在地区规定年龄以下的未成年人。</p>
+    </div>
+
+    <div class="card">
+      <h2>联系</h2>
+      <p>隐私问题请在项目仓库提交 Issue：<a href="https://github.com/jasper26/innervoice" class="chip">github.com/jasper26/innervoice</a></p>
+    </div>
+
+    <footer class="note small">政策可能随功能更新而调整；重大变更会在此页面体现。</footer>
+  </section>
+
+  <!-- ================= JAPANESE ================= -->
+  <section data-lang="ja" style="display:none">
+    <div class="card">
+      <h2>概要</h2>
+      <p><strong>Inner Voice</strong> は、半径約 1km の範囲に 24 時間だけ表示される短いテキストやボイスを共有できるアプリです。本ポリシーでは、収集する情報とその利用目的、ユーザーの選択肢について説明します。</p>
+      <p class="small note">リポジトリ：<a class="chip" href="https://github.com/jasper26/innervoice">github.com/jasper26/innervoice</a> · 施行日：<span class="mono" id="ja-date"></span></p>
+      <script>document.getElementById("ja-date").textContent=new Date().toISOString().slice(0,10);</script>
+    </div>
+
+    <div class="card">
+      <h2>権限と利用目的</h2>
+      <div class="grid">
+        <div>
+          <h3>位置情報（アプリ使用中のみ）</h3>
+          <ul>
+            <li>近くの投稿（約 1km）を表示し、都市名を表示します。</li>
+            <li>Apple WeatherKit（iOS 16+）または Open-Meteo で現在の天気を取得します。</li>
+            <li><span class="ok">バックグラウンドでの継続的な位置取得は行いません</span>。必要時のみ許可を求めます。</li>
+            <li>投稿を公開すると、その座標が投稿に保存され、近くのユーザーに表示されます。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>マイク</h3>
+          <ul>
+            <li>投稿（および利用可能な場合はチャット）の音声メッセージを録音します。</li>
+            <li>音声は Firebase Storage に保存し、長さや波形サンプルを記録します。</li>
+            <li>投稿の音声は <strong>24 時間</strong> の有効期限後に削除されます。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>フォトライブラリ</h3>
+          <ul>
+            <li>投稿やプロフィールに添付する写真を選択できます。</li>
+            <li><span class="ok">ユーザーが選んだ項目のみ</span>にアクセスし、ライブラリ全体のスキャンは行いません。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>カメラ</h3>
+          <ul>
+            <li>投稿やプロフィール用の写真をその場で撮影します。</li>
+            <li>要求時のみ使用し、バックグラウンドでは使用しません。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>処理するデータ</h2>
+      <ul>
+        <li><strong>アカウント情報</strong>：Google サインイン等で提供される UID と基本プロフィール。</li>
+        <li><strong>プロフィール</strong>：表示名、アップロードした写真。</li>
+        <li><strong>投稿</strong>：テキスト、ムード／絵文字と色、任意の写真／音声、おおよその位置、いいね数、作成／有効期限。投稿は <strong>24 時間後に自動失効</strong>します。</li>
+        <li><strong>利用状況データ</strong>：Firebase がサービス運用のために必要とする最小限のログ。データの販売は行いません。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>使用するサービス</h2>
+      <ul>
+        <li><strong>Firebase</strong>（Auth/Firestore/Storage）：認証、投稿、メディア保存、リアルタイム更新。</li>
+        <li><strong>Apple WeatherKit</strong> / <strong>Open-Meteo</strong>：天気取得のため座標を送信しますが、アカウントと紐付けません。</li>
+        <li><strong>Apple MapKit</strong>：地図表示とクラスター。</li>
+        <li><strong>Google サインイン</strong>：任意のログイン手段。UID と基本情報をアカウント作成に使用します。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>選択肢と管理</h2>
+      <ul>
+        <li>権限を拒否できます（該当機能は利用不可）。</li>
+        <li>投稿はいつでも削除できます。削除しない場合でも 24 時間後に失効します。</li>
+        <li>データのエクスポートやアカウント削除は下記よりお問い合わせください。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>セキュリティと保存期間</h2>
+      <ul>
+        <li>通信は HTTPS/TLS、保存は Firebase のアクセスルールで保護しています。</li>
+        <li>投稿・メディアは最大 24 時間保持。プロフィールの写真は削除するまで保持されます。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>児童のプライバシー</h2>
+      <p>本サービスは 13 歳未満または地域の規定年齢未満の子どもを対象としていません。</p>
+    </div>
+
+    <div class="card">
+      <h2>連絡先</h2>
+      <p>プライバシーに関するご質問は、リポジトリの Issue からご連絡ください：<a href="https://github.com/jasper26/innervoice" class="chip">github.com/jasper26/innervoice</a></p>
+    </div>
+
+    <footer class="note small">アプリの変更に伴い本ポリシーを更新する場合があります。重要な変更は当ページに反映します。</footer>
+  </section>
+
+  <!-- ================= KOREAN ================= -->
+  <section data-lang="ko" style="display:none">
+    <div class="card">
+      <h2>개요</h2>
+      <p><strong>Inner Voice</strong>는 반경 약 1km 내에서 24시간만 보이는 짧은 글/음성을 공유하는 앱입니다. 본 문서는 어떤 정보를 왜 수집·사용하는지, 그리고 사용자가 선택할 수 있는 사항을 설명합니다.</p>
+      <p class="small note">저장소: <a class="chip" href="https://github.com/jasper26/innervoice">github.com/jasper26/innervoice</a> · 시행일: <span class="mono" id="ko-date"></span></p>
+      <script>document.getElementById("ko-date").textContent=new Date().toISOString().slice(0,10);</script>
+    </div>
+
+    <div class="card">
+      <h2>권한 및 목적</h2>
+      <div class="grid">
+        <div>
+          <h3>위치 (앱 사용 중)</h3>
+          <ul>
+            <li>주변 게시물(약 1km)과 도시 이름을 표시합니다.</li>
+            <li>Apple WeatherKit(iOS 16+) 또는 Open-Meteo로 날씨를 가져옵니다.</li>
+            <li><span class="ok">백그라운드에서 지속적으로 위치를 수집하지 않습니다</span>. 필요한 경우에만 요청합니다.</li>
+            <li>게시물을 올리면 지도 표시를 위해 좌표가 게시물에 저장됩니다.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>마이크</h3>
+          <ul>
+            <li>게시물(및 가능 시 채팅) 음성 메시지를 녹음합니다.</li>
+            <li>오디오는 Firebase Storage에 저장되며 길이/파형 샘플이 기록됩니다.</li>
+            <li>게시물의 음성은 <strong>24시간</strong> 후 게시물과 함께 만료됩니다.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>사진 보관함</h3>
+          <ul>
+            <li>게시물 또는 프로필에 첨부할 사진을 선택합니다.</li>
+            <li><span class="ok">사용자가 선택한 항목만</span> 접근하며, 전체 앨범을 스캔하지 않습니다.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>카메라</h3>
+          <ul>
+            <li>게시물/프로필 사진을 직접 촬영합니다.</li>
+            <li>요청 시에만 사용하며, 백그라운드에서는 동작하지 않습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>처리하는 데이터</h2>
+      <ul>
+        <li><strong>계정 정보</strong>: Google 로그인 등으로 제공되는 UID와 기본 프로필 정보.</li>
+        <li><strong>프로필</strong>: 표시 이름, 업로드한 사진.</li>
+        <li><strong>게시물</strong>: 텍스트, 기분/이모지 및 색상, 선택적 사진/음성, 대략적 위치, 좋아요 수, 생성/만료 시간. 게시물은 <strong>24시간 후 자동 만료</strong>됩니다.</li>
+        <li><strong>사용 데이터</strong>: Firebase 서비스 운영에 필요한 최소 로그. 데이터를 판매하지 않습니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>사용 서비스</h2>
+      <ul>
+        <li><strong>Firebase</strong>(Auth/Firestore/Storage): 인증, 게시물, 미디어 저장, 실시간 갱신.</li>
+        <li><strong>Apple WeatherKit</strong> / <strong>Open-Meteo</strong>: 날씨 조회를 위해 좌표를 사용하지만 계정과 연결하지 않습니다.</li>
+        <li><strong>Apple MapKit</strong>: 지도 표시 및 클러스터링.</li>
+        <li><strong>Google 로그인</strong>: 선택적 로그인 수단으로, 계정 생성/연결에 사용합니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>사용자 선택</h2>
+      <ul>
+        <li>권한을 거부할 수 있으며, 해당 기능은 사용할 수 없습니다.</li>
+        <li>게시물은 언제든 삭제할 수 있으며, 삭제하지 않아도 24시간 후 자동 삭제됩니다.</li>
+        <li>데이터 내보내기/계정 삭제 요청은 아래 연락처로 문의해 주세요.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>보안 및 보관</h2>
+      <ul>
+        <li>전송은 HTTPS/TLS로 보호되며, 미디어는 Firebase 규칙으로 보호됩니다.</li>
+        <li>게시물/미디어는 최대 24시간 보관, 프로필 사진은 삭제 시까지 보관됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>아동의 개인정보</h2>
+      <p>본 서비스는 만 13세 미만 또는 해당 지역의 최소 이용연령 미만의 아동을 대상으로 하지 않습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2>문의</h2>
+      <p>개인정보 관련 문의는 프로젝트 저장소 Issue로 연락해 주세요: <a href="https://github.com/jasper26/innervoice" class="chip">github.com/jasper26/innervoice</a></p>
+    </div>
+
+    <footer class="note small">앱 변경에 따라 본 정책이 업데이트될 수 있으며, 중요한 변경은 본 페이지에 반영됩니다.</footer>
+  </section>
+
+</div>
+</body>
+</html>
+
