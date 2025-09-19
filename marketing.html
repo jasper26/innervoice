@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inner Voice — About</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{--bg:#ffffff;--fg:#111827;--muted:#6b7280;--card:#f9fafb;--accent:#4f46e5;--ring:#e5e7eb}
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#0b0f17;--fg:#e5e7eb;--muted:#9ca3af;--card:#111827;--accent:#8b5cf6;--ring:#1f2937}
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;background:var(--bg);color:var(--fg)}
+    .wrap{max-width:960px;margin:0 auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}
+    h1{font-size:clamp(24px,3.5vw,36px);margin:0}
+    nav{display:flex;gap:8px;flex-wrap:wrap}
+    nav a{padding:8px 10px;border:1px solid var(--ring);border-radius:999px;text-decoration:none;color:var(--fg)}
+    nav a.active{background:var(--accent);border-color:var(--accent);color:white}
+    section{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:18px;margin:14px 0}
+    h2{margin:0 0 8px;font-size:20px}
+    .muted{color:var(--muted)}
+    ul{margin:8px 0 0 20px}
+    footer{margin-top:28px;font-size:12px;color:var(--muted)}
+    a.inline{color:var(--accent);text-decoration:none}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  </style>
+  <script>
+    const dict = {
+      "en": {
+        title:"About Inner Voice",
+        hero:"Inner Voice helps you share short, location‑based posts with nearby people — text, voice, and photos — that expire in 24 hours.",
+        features:"Key Features",
+        features_list:[
+          "1 km radius map with clustering bubbles and avatars",
+          "24‑hour TTL posts; recent self posts visible anywhere",
+          "Voice posts with waveform previews",
+          "Simple likes and comments",
+          "Privacy‑first design — minimal data, transparent permissions"
+        ],
+        privacy:"Privacy & Safety",
+        privacy_body:`We only request permissions strictly needed for core features (Location, Microphone, Camera/Photos). See the <a class="inline" href="privacy-policy.html">Privacy Policy</a> for detailed purposes and retention.`,
+        get:"Get the App",
+        get_body:`Search “Inner Voice” on the App Store (when available) or follow our <a class="inline" href="https://github.com/jasper26/innervoice" target="_blank" rel="noopener">GitHub repository</a> for updates.`,
+        support:"Support",
+        support_body:`Visit our <a class="inline" href="support.html">Support page</a> for FAQ and contact.`
+      },
+      "zh-Hant":{
+        title:"關於 Inner Voice",
+        hero:"Inner Voice 讓你以地圖為中心，分享 24 小時內到期的附近短文：支援文字、語音與照片。",
+        features:"重點功能",
+        features_list:[
+          "1 公里半徑地圖，支援聚合泡泡與頭像",
+          "貼文存活 24 小時；自己的近期貼文隨處可見",
+          "語音貼文與波形預覽",
+          "簡單的按讚與留言",
+          "隱私優先：只請求必要權限，資訊公開透明"
+        ],
+        privacy:"隱私與安全",
+        privacy_body:`我們僅請求核心功能所必需的權限（定位、麥克風、相機/相簿）。詳情請見 <a class="inline" href="privacy-policy.html">隱私權政策</a>。`,
+        get:"取得 App",
+        get_body:`App 上架後可於 App Store 搜尋「Inner Voice」，或追蹤我們的 <a class="inline" href="https://github.com/jasper26/innervoice" target="_blank" rel="noopener">GitHub 倉庫</a>。`,
+        support:"支援",
+        support_body:`前往 <a class="inline" href="support.html">支援頁</a> 查看常見問題與聯絡方式。`
+      },
+      "zh-Hans":{
+        title:"关于 Inner Voice",
+        hero:"Inner Voice 让你以地图为中心，分享 24 小时后到期的附近短内容：支持文字、语音与照片。",
+        features:"核心功能",
+        features_list:[
+          "1 公里半径地图，支持聚合气泡与头像",
+          "帖子有效期 24 小时；自己的近期帖子随处可见",
+          "语音帖子与波形预览",
+          "简洁的点赞与评论",
+          "隐私优先：只请求必要权限，信息透明"
+        ],
+        privacy:"隐私与安全",
+        privacy_body:`我们仅请求核心功能所需的权限（定位、麦克风、相机/相册）。详见 <a class="inline" href="privacy-policy.html">隐私政策</a>。`,
+        get:"获取 App",
+        get_body:`上架后可在 App Store 搜索“Inner Voice”，或关注我们的 <a class="inline" href="https://github.com/jasper26/innervoice" target="_blank" rel="noopener">GitHub 仓库</a>。`,
+        support:"支持",
+        support_body:`前往 <a class="inline" href="support.html">支持页面</a> 查看常见问题与联系方式。`
+      },
+      "ja":{
+        title:"Inner Voice について",
+        hero:"Inner Voice は、位置情報に基づく短い投稿（テキスト・ボイス・写真）を近くの人と共有できるアプリです。投稿は 24 時間で自動的に期限切れになります。",
+        features:"主な機能",
+        features_list:[
+          "1km 半径のマップ、クラスタ表示とアバター",
+          "24 時間の有効期限／自分の最近の投稿はどこからでも閲覧可",
+          "音声投稿と波形プレビュー",
+          "シンプルないいね・コメント",
+          "プライバシー重視：必要最小限の権限のみ"
+        ],
+        privacy:"プライバシーと安全",
+        privacy_body:`必要な権限（位置情報・マイク・カメラ/写真）に限定して依頼します。詳しくは <a class="inline" href="privacy-policy.html">プライバシーポリシー</a> をご覧ください。`,
+        get:"入手方法",
+        get_body:`App Store で「Inner Voice」を検索（公開後）。最新情報は <a class="inline" href="https://github.com/jasper26/innervoice" target="_blank" rel="noopener">GitHub</a> をご確認ください。`,
+        support:"サポート",
+        support_body:`FAQ と連絡先は <a class="inline" href="support.html">サポートページ</a> をご覧ください。`
+      },
+      "ko":{
+        title:"Inner Voice 소개",
+        hero:"Inner Voice 는 위치 기반의 짧은 게시물을 주변 사람들과 공유하는 앱입니다. 텍스트, 음성, 사진을 지원하며 24시간 후 자동으로 만료됩니다.",
+        features:"주요 기능",
+        features_list:[
+          "1km 반경 지도, 클러스터 버블과 아바타",
+          "24시간 TTL 게시물 / 내 최근 게시물은 어디서든 표시",
+          "음성 게시물 및 파형 미리보기",
+          "간단한 좋아요와 댓글",
+          "개인정보 우선 설계 — 최소 권한, 투명한 안내"
+        ],
+        privacy:"개인정보 및 안전",
+        privacy_body:`필수 기능에 필요한 권한(위치, 마이크, 카메라/사진)만 요청합니다. 자세한 내용은 <a class="inline" href="privacy-policy.html">개인정보 처리방침</a>을 참고하세요.`,
+        get:"앱 받기",
+        get_body:`출시 후 App Store 에서 “Inner Voice”를 검색하거나 <a class="inline" href="https://github.com/jasper26/innervoice" target="_blank" rel="noopener">GitHub 저장소</a>를 확인하세요.`,
+        support:"지원",
+        support_body:`FAQ 및 연락처는 <a class="inline" href="support.html">지원 페이지</a>에서 확인하세요.`
+      }
+    };
+
+    const state={lang:"en"};
+    function setLang(l){ state.lang=dict[l]?l:"en"; location.hash = state.lang; render(); }
+    function render(){
+      const d=dict[state.lang]||dict.en;
+      document.getElementById("title").textContent=d.title;
+      document.getElementById("hero").textContent=d.hero;
+      document.getElementById("feat").textContent=d.features;
+      const ul=document.getElementById("flist"); ul.innerHTML="";
+      d.features_list.forEach(x=>{ const li=document.createElement("li"); li.textContent=x; ul.appendChild(li); });
+      document.getElementById("privacy").textContent=d.privacy;
+      document.getElementById("privacyBody").innerHTML=d.privacy_body;
+      document.getElementById("get").textContent=d.get;
+      document.getElementById("getBody").innerHTML=d.get_body;
+      document.getElementById("support").textContent=d.support;
+      document.getElementById("supportBody").innerHTML=d.support_body;
+      document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active", a.dataset.lang===state.lang));
+    }
+    window.addEventListener("hashchange", ()=> setLang(location.hash.replace("#","")));
+    window.addEventListener("DOMContentLoaded", ()=> setLang(location.hash.replace("#","")||navigator.language||"en"));
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="title">About Inner Voice</h1>
+    <nav>
+      <a href="#en" data-lang="en" onclick="setLang('en')">EN</a>
+      <a href="#zh-Hant" data-lang="zh-Hant" onclick="setLang('zh-Hant')">繁</a>
+      <a href="#zh-Hans" data-lang="zh-Hans" onclick="setLang('zh-Hans')">简</a>
+      <a href="#ja" data-lang="ja" onclick="setLang('ja')">日本語</a>
+      <a href="#ko" data-lang="ko" onclick="setLang('ko')">한국어</a>
+    </nav>
+  </header>
+
+  <section>
+    <p id="hero" class="muted">Inner Voice helps you share short, location‑based posts…</p>
+  </section>
+
+  <section>
+    <h2 id="feat">Key Features</h2>
+    <ul id="flist"></ul>
+  </section>
+
+  <div class="grid">
+    <section>
+      <h2 id="privacy">Privacy & Safety</h2>
+      <p id="privacyBody"></p>
+    </section>
+    <section>
+      <h2 id="get">Get the App</h2>
+      <p id="getBody"></p>
+    </section>
+  </div>
+
+  <section>
+    <h2 id="support">Support</h2>
+    <p id="supportBody"></p>
+  </section>
+
+  <footer>© <script>document.write(new Date().getFullYear())</script> Inner Voice · <a class="inline" href="privacy-policy.html">Privacy Policy</a> · <a class="inline" href="support.html">Support</a></footer>
+</div>
+</body>
+</html>

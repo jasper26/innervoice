@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inner Voice — Support</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --bg:#ffffff;--fg:#111827;--muted:#6b7280;--card:#f9fafb;--accent:#4f46e5;--ring:#e5e7eb;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0f17;--fg:#e5e7eb;--muted:#9ca3af;--card:#111827;--accent:#8b5cf6;--ring:#1f2937;}
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;background:var(--bg);color:var(--fg);}
+    .wrap{max-width:960px;margin:0 auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}
+    h1{font-size:clamp(24px,3.5vw,36px);margin:0}
+    nav{display:flex;gap:8px;flex-wrap:wrap}
+    nav a{padding:8px 10px;border:1px solid var(--ring);border-radius:999px;text-decoration:none;color:var(--fg)}
+    nav a.active{background:var(--accent);border-color:var(--accent);color:white}
+    section{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:18px;margin:14px 0}
+    h2{margin:0 0 8px;font-size:20px}
+    .muted{color:var(--muted)}
+    ul{margin:8px 0 0 20px}
+    footer{margin-top:28px;font-size:12px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    code{background:var(--ring);padding:2px 6px;border-radius:6px}
+    a.inline{color:var(--accent);text-decoration:none}
+  </style>
+  <script>
+    // Simple i18n via hash: #en #zh-Hant #zh-Hans #ja #ko
+    const dict = {
+      "en": {
+        title: "Support",
+        intro: "Welcome to Inner Voice support. Find quick answers, contact options, and links to our privacy policy.",
+        quicklinks: "Quick Links",
+        link_privacy: "Privacy Policy",
+        link_marketing: "About Inner Voice",
+        contact: "Contact",
+        contact_body: `Open a ticket via <a class="inline" href="https://github.com/jasper26/innervoice/issues" target="_blank" rel="noopener">GitHub Issues</a> or email us at <a class="inline" href="mailto:hello@innervoice.app">hello@innervoice.app</a>.`,
+        faq: "FAQ",
+        faq_items: [
+          ["I can’t sign in with Google", "Please ensure Safari is enabled and the Google URL scheme is configured. Try reinstalling and ensure your device time is correct."],
+          ["Why do you ask for location/microphone/camera/photos?", "Location is used to show nearby posts; microphone for voice posts; camera & photo library for uploading an image to a post. See Privacy Policy for full details."],
+          ["How do I report a post or a user?", "Please capture a screenshot and contact us via the form above; we will investigate and take action according to our community rules."]
+        ],
+        troubleshooting: "Troubleshooting",
+        tr_items: [
+          "Check you are on the latest app version.",
+          "Verify network connectivity and try switching Wi‑Fi/cellular.",
+          "If permissions were denied, go to Settings → Inner Voice → enable required permissions.",
+          "Restart the app and device if problems persist."
+        ],
+        legal: "Legal & Policies",
+        legal_body: `Read our <a class="inline" href="privacy-policy.html">Privacy Policy</a>.`
+      },
+      "zh-Hant": {
+        title: "支援",
+        intro: "歡迎來到 Inner Voice 支援頁。這裡提供常見問題、聯絡方式與隱私權政策連結。",
+        quicklinks: "快速連結",
+        link_privacy: "隱私權政策",
+        link_marketing: "關於 Inner Voice",
+        contact: "聯絡我們",
+        contact_body: `請到 <a class="inline" href="https://github.com/jasper26/innervoice/issues" target="_blank" rel="noopener">GitHub Issues</a> 建立工單，或來信 <a class="inline" href="mailto:hello@innervoice.app">hello@innervoice.app</a>。`,
+        faq: "常見問題",
+        faq_items: [
+          ["無法使用 Google 登入", "請確認已啟用 Safari，且已正確設定 Google URL Scheme。可嘗試重新安裝，並確認裝置時間正確。"],
+          ["為什麼需要位置／麥克風／相機／相簿權限？", "位置用於顯示附近貼文；麥克風用於語音貼文；相機與相簿用於上傳貼文圖片。完整細節請見隱私權政策。"],
+          ["如何檢舉貼文或使用者？", "請截圖並透過上方方式聯繫，我們會依社群規範處理。"]
+        ],
+        troubleshooting: "疑難排解",
+        tr_items: [
+          "確認已更新至最新版本。",
+          "檢查網路連線，試著切換 Wi‑Fi／行動數據。",
+          "若先前拒絕權限，請至「設定 → Inner Voice」重新開啟所需權限。",
+          "若仍有問題，請重新啟動 App 與裝置。"
+        ],
+        legal: "法務與政策",
+        legal_body: `請閱讀我們的 <a class="inline" href="privacy-policy.html">隱私權政策</a>。`
+      },
+      "zh-Hans": {
+        title: "支持",
+        intro: "欢迎来到 Inner Voice 支持页。这里提供常见问题、联系方式与隐私政策链接。",
+        quicklinks: "快速链接",
+        link_privacy: "隐私政策",
+        link_marketing: "关于 Inner Voice",
+        contact: "联系我们",
+        contact_body: `请到 <a class="inline" href="https://github.com/jasper26/innervoice/issues" target="_blank" rel="noopener">GitHub Issues</a> 建立工单，或邮件至 <a class="inline" href="mailto:hello@innervoice.app">hello@innervoice.app</a>。`,
+        faq: "常见问题",
+        faq_items: [
+          ["无法使用 Google 登录", "请确认已启用 Safari，且正确配置 Google URL Scheme。可尝试重新安装，并确认设备时间正确。"],
+          ["为什么需要定位／麦克风／相机／相册权限？", "定位用于显示附近帖子；麦克风用于语音帖子；相机与相册用于上传图片。详情请见隐私政策。"],
+          ["如何举报帖子或用户？", "请截图并通过上方方式联系我们，我们将依社区规范处理。"]
+        ],
+        troubleshooting: "排错建议",
+        tr_items: [
+          "确认已更新到最新版本。",
+          "检查网络连接，尝试切换 Wi‑Fi／蜂窝数据。",
+          "若先前拒绝权限，请到“设置 → Inner Voice”重新开启所需权限。",
+          "若问题仍在，请重启 App 与设备。"
+        ],
+        legal: "法律与政策",
+        legal_body: `阅读我们的 <a class="inline" href="privacy-policy.html">隐私政策</a>。`
+      },
+      "ja": {
+        title: "サポート",
+        intro: "Inner Voice のサポートページです。よくある質問、連絡方法、プライバシーポリシーへのリンクを掲載しています。",
+        quicklinks: "クイックリンク",
+        link_privacy: "プライバシーポリシー",
+        link_marketing: "Inner Voice について",
+        contact: "お問い合わせ",
+        contact_body: ` <a class="inline" href="https://github.com/jasper26/innervoice/issues" target="_blank" rel="noopener">GitHub Issues</a> でチケットを作成するか、<a class="inline" href="mailto:hello@innervoice.app">hello@innervoice.app</a> までメールでご連絡ください。`,
+        faq: "FAQ",
+        faq_items: [
+          ["Google でサインインできない", "Safari を有効にし、Google の URL スキームが構成されているか確認してください。再インストールし、端末の時刻が正しいか確認してください。"],
+          ["位置情報／マイク／カメラ／写真の権限が必要な理由", "位置情報は近くの投稿を表示するため、マイクは音声投稿、カメラとフォトライブラリは画像のアップロードに使用します。詳細はプライバシーポリシーをご覧ください。"],
+          ["投稿・ユーザーを報告するには？", "スクリーンショットを添付して上記の方法でご連絡ください。コミュニティ規約に基づき対応します。"]
+        ],
+        troubleshooting: "トラブルシューティング",
+        tr_items: [
+          "最新バージョンに更新してください。",
+          "ネットワーク接続を確認し、Wi‑Fi／モバイル通信を切り替えてお試しください。",
+          "権限を拒否した場合は「設定 → Inner Voice」で必要な権限を有効にしてください。",
+          "解決しない場合はアプリと端末を再起動してください。"
+        ],
+        legal: "法務・ポリシー",
+        legal_body: ` <a class="inline" href="privacy-policy.html">プライバシーポリシー</a> をご確認ください。`
+      },
+      "ko": {
+        title: "지원",
+        intro: "Inner Voice 지원 페이지입니다. 자주 묻는 질문, 연락 방법, 개인정보 처리방침 링크가 포함되어 있습니다.",
+        quicklinks: "바로가기",
+        link_privacy: "개인정보 처리방침",
+        link_marketing: "Inner Voice 소개",
+        contact: "문의하기",
+        contact_body: `<a class="inline" href="https://github.com/jasper26/innervoice/issues" target="_blank" rel="noopener">GitHub Issues</a> 에 이슈를 등록하거나 <a class="inline" href="mailto:hello@innervoice.app">hello@innervoice.app</a> 로 이메일을 보내주세요.`,
+        faq: "자주 묻는 질문",
+        faq_items: [
+          ["Google 로그인 문제가 있어요", "Safari 가 활성화되어 있는지, Google URL 스킴이 설정되어 있는지 확인하세요. 재설치 후 기기의 시간이 올바른지 점검하세요."],
+          ["위치/마이크/카메라/사진 권한이 필요한 이유", "위치는 근처 게시물 표시, 마이크는 음성 게시물, 카메라와 사진은 이미지 업로드에 사용합니다. 자세한 내용은 개인정보 처리방침을 확인하세요."],
+          ["게시물 또는 사용자를 신고하려면?", "스크린샷을 첨부하여 위의 방법으로 연락해 주세요. 커뮤니티 규칙에 따라 조치합니다."]
+        ],
+        troubleshooting: "문제 해결",
+        tr_items: [
+          "앱이 최신 버전인지 확인하세요.",
+          "네트워크 연결을 확인하고 Wi‑Fi/셀룰러 전환을 시도하세요.",
+          "권한을 거부했다면 설정 → Inner Voice 에서 필요한 권한을 다시 허용하세요.",
+          "여전히 문제가 있으면 앱과 기기를 재시작하세요."
+        ],
+        legal: "법률 및 정책",
+        legal_body: ` <a class="inline" href="privacy-policy.html">개인정보 처리방침</a>을 확인하세요.`
+      }
+    };
+
+    function t(key){ return dict[state.lang][key]; }
+    function render(){
+      const d = dict[state.lang] || dict.en;
+      document.getElementById("title").textContent = d.title;
+      document.getElementById("intro").innerHTML = d.intro;
+      document.getElementById("ql").textContent = d.quicklinks;
+      document.getElementById("privacyLink").textContent = d.link_privacy;
+      document.getElementById("marketingLink").textContent = d.link_marketing;
+      document.getElementById("contact").textContent = d.contact;
+      document.getElementById("contactBody").innerHTML = d.contact_body;
+      document.getElementById("faq").textContent = d.faq;
+      const faqBox = document.getElementById("faqItems"); faqBox.innerHTML = "";
+      d.faq_items.forEach(([q,a])=>{
+        const s = document.createElement("section");
+        const h = document.createElement("h3"); h.textContent = q; h.style.margin = "0 0 6px"; h.style.fontSize = "16px";
+        const p = document.createElement("p"); p.className="muted"; p.style.margin="0"; p.textContent = a;
+        s.appendChild(h); s.appendChild(p); faqBox.appendChild(s);
+      });
+      document.getElementById("ts").textContent = d.troubleshooting;
+      const tl = document.getElementById("trList"); tl.innerHTML="";
+      d.tr_items.forEach(item=>{ const li=document.createElement("li"); li.textContent=item; tl.appendChild(li); });
+      document.getElementById("legal").textContent = d.legal;
+      document.getElementById("legalBody").innerHTML = d.legal_body;
+      // nav active
+      document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active", a.dataset.lang===state.lang));
+    }
+
+    const state = { lang: "en" };
+    function setLang(l){ state.lang = dict[l]?l:"en"; location.hash = l; render(); }
+    window.addEventListener("hashchange", ()=> setLang(location.hash.replace("#","")));
+    window.addEventListener("DOMContentLoaded", ()=> setLang(location.hash.replace("#","")||navigator.language||"en"));
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="title">Support</h1>
+    <nav>
+      <a href="#en" data-lang="en" onclick="setLang('en')">EN</a>
+      <a href="#zh-Hant" data-lang="zh-Hant" onclick="setLang('zh-Hant')">繁</a>
+      <a href="#zh-Hans" data-lang="zh-Hans" onclick="setLang('zh-Hans')">简</a>
+      <a href="#ja" data-lang="ja" onclick="setLang('ja')">日本語</a>
+      <a href="#ko" data-lang="ko" onclick="setLang('ko')">한국어</a>
+    </nav>
+  </header>
+
+  <p id="intro" class="muted">Welcome to Inner Voice support…</p>
+
+  <div class="grid">
+    <section>
+      <h2 id="ql">Quick Links</h2>
+      <ul>
+        <li><a id="privacyLink" class="inline" href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a id="marketingLink" class="inline" href="marketing.html">About Inner Voice</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="contact">Contact</h2>
+      <p id="contactBody"></p>
+    </section>
+  </div>
+
+  <section>
+    <h2 id="faq">FAQ</h2>
+    <div id="faqItems"></div>
+  </section>
+
+  <section>
+    <h2 id="ts">Troubleshooting</h2>
+    <ul id="trList"></ul>
+  </section>
+
+  <section>
+    <h2 id="legal">Legal & Policies</h2>
+    <p id="legalBody"></p>
+  </section>
+
+  <footer>© <script>document.write(new Date().getFullYear())</script> Inner Voice</footer>
+</div>
+</body>
+</html>
