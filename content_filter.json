@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "blockAllURLsInPosts": true,
+  "allowedHostsInPosts": [],
+  "shortUrlBlocklist": ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "reurl.cc", "is.gd"],
+  "global": {
+    "keywords": [
+      "nazi","hitler","kill","murder","rape","genocide",
+      "drug","cocaine","marijuana","casino","gambling",
+      "scam","ponzi","money mule","sell gun","organ trade"
+    ]
+  },
+  "en": {
+    "keywords": [
+      "hate speech","slur","nsfw","sex service","escort","OnlyFans"
+    ]
+  },
+  "zh-Hant": {
+    "keywords": [
+      "殺人","強暴","仇恨","納粹","屠殺",
+      "毒品","白粉","大麻","賭博","線上賭場",
+      "約炮","色圖","黃網",
+      "賺很快","投資群","刷單","返利",
+      "買槍","走私","器官"
+    ]
+  },
+  "zh-Hans": {
+    "keywords": [
+      "杀人","强奸","仇恨","纳粹","屠杀",
+      "毒品","白粉","大麻","赌博","线上赌场",
+      "约炮","色图","黄网",
+      "来钱快","投资群","刷单","返利",
+      "买枪","走私","器官"
+    ]
+  },
+  "ja": {
+    "keywords": [
+      "殺人","強姦","ヘイト","ナチ","虐殺",
+      "ドラッグ","大麻","ギャンブル","闇カジノ",
+      "売春","わいせつ","詐欺","投資詐欺","勧誘"
+    ]
+  },
+  "ko": {
+    "keywords": [
+      "살인","강간","증오","나치","학살",
+      "마약","대마","도박","불법 카지노",
+      "매춘","음란","사기","투자 사기","리크루팅"
+    ]
+  },
+  "contactPhrases": [
+    "line","wechat","weixin","telegram","tg","whatsapp","kakaotalk",
+    "kakao","signal","discord","skype"
+  ]
+}
